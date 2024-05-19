@@ -8,8 +8,8 @@ resource "aws_lambda_function" "website_lambda" {
   filename         = data.archive_file.lambda_zip.output_path
   function_name    = "my-website-lambda"
   role             = aws_iam_role.lambda_exec.arn
-  handler          = "index.handler"
-  runtime          = "nodejs14.x"
+  handler          = "app.handler"
+  runtime          = "python3.12"
   source_code_hash = data.archive_file.lambda_zip.output_base64sha256
 }
 

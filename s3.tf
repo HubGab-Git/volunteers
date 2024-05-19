@@ -1,11 +1,5 @@
 resource "aws_s3_bucket" "website_bucket" {
-  bucket = "XXXXXXXXXXwebsite-bucket"
-  acl    = "public-read"
-
-  website {
-    index_document = "index.html"
-    error_document = "error.html"
-  }
+  bucket = "${local.name}-website-bucket-${random_string.random.result}"
 }
 
 resource "aws_s3_bucket_object" "website_files" {
@@ -18,4 +12,16 @@ resource "aws_s3_bucket_object" "website_files" {
   acl    = "public-read"
 
   content_type = lookup(local.mime_types, split(".", each.value)[length(split(".", each.value)) - 1], "application/octet-stream")
+}
+
+resource "aws_s3_bucket_website_configuration" "website_bucket" {
+  bucket = aws_s3_bucket.website_bucket.id
+
+  index_document {
+    suffix = "index.html"
+  }
+
+  error_document {
+    key = "error.html"
+  }
 }
