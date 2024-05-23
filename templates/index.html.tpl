@@ -44,7 +44,7 @@
     <script>
       // Fetch data from the API Gateway
       async function fetchDataFromApiGateway() {
-        const apiUrl = "https://m3r97lxns2.execute-api.us-east-1.amazonaws.com/test";
+        const apiUrl = "${api_gateway_url}";
         try {
           const response = await fetch(apiUrl);
           if (!response.ok) {

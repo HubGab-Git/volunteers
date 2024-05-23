@@ -100,3 +100,4 @@ payload.json
 .antlr
 *.zip
 plan
+/bash/*

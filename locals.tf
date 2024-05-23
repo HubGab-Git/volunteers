@@ -1,12 +1,13 @@
 locals {
-  mime_types = {
-    html = "text/html"
-    js   = "application/javascript"
-    css  = "text/css"
-    png  = "image/png"
-    jpg  = "image/jpeg"
-    json = "application/json"
+  name = "volunteers"
+
+  lambdas = {
+    "db-schema"           = "0.0.4"
+    "db-select"           = "0.0.3"
+    "insert-example-data" = "0.0.4"
+    "query-users"         = "0.0.12"
+    "query-scout"         = "0.0.3"
   }
 
-  name = "volunteers"
+  lambdas_path = "${path.module}/lambda-code"
 }
